@@ -5,7 +5,7 @@ app = Flask(__name__)
 # Serve the main portfolio page
 @app.route('/')
 def index():
-    return send_from_directory('.', 'portfolio.html')
+    return send_from_directory('.', 'index.html')
 
 # Serve any other file (json, images, resume, etc.)
 @app.route('/<path:path>')
