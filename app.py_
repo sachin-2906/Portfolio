@@ -1,1 +1,17 @@
-{"nbformat":4,"nbformat_minor":0,"metadata":{"colab":{"provenance":[],"authorship_tag":"ABX9TyNz6vBbRMBu8uAxP4qedDxv"},"kernelspec":{"name":"python3","display_name":"Python 3"},"language_info":{"name":"python"}},"cells":[{"cell_type":"code","execution_count":1,"metadata":{"colab":{"base_uri":"https://localhost:8080/"},"id":"V7yMP1h7UKa1","executionInfo":{"status":"ok","timestamp":1755695344985,"user_tz":-330,"elapsed":317038,"user":{"displayName":"Sachin Shimpi","userId":"10623635676314518522"}},"outputId":"24687caa-9f72-4c24-f42e-c19ee9b07e73"},"outputs":[{"output_type":"stream","name":"stdout","text":["✅ Portfolio running at: http://127.0.0.1:8000/\n"," * Serving Flask app '__main__'\n"," * Debug mode: on\n"]},{"output_type":"stream","name":"stderr","text":["INFO:werkzeug:\u001b[31m\u001b[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.\u001b[0m\n"," * Running on http://127.0.0.1:8000\n","INFO:werkzeug:\u001b[33mPress CTRL+C to quit\u001b[0m\n","INFO:werkzeug: * Restarting with stat\n"]}],"source":["from flask import Flask, send_from_directory\n","\n","app = Flask(__name__)\n","\n","# Serve the main portfolio page\n","@app.route('/')\n","def index():\n","    return send_from_directory('.', 'portfolio.html')\n","\n","# Serve any other file (json, images, resume, etc.)\n","@app.route('/<path:path>')\n","def static_files(path):\n","    return send_from_directory('.', path)\n","\n","if __name__ == '__main__':\n","    print(\"✅ Portfolio running at: http://127.0.0.1:8000/\")\n","    app.run(port=8000, debug=True)\n"]}]}
+from flask import Flask, send_from_directory
+
+app = Flask(__name__)
+
+# Serve the main portfolio page
+@app.route('/')
+def index():
+    return send_from_directory('.', 'portfolio.html')
+
+# Serve any other file (json, images, resume, etc.)
+@app.route('/<path:path>')
+def static_files(path):
+    return send_from_directory('.', path)
+
+if __name__ == '__main__':
+    print("✅ Portfolio running at: http://127.0.0.1:8000/")
+    app.run(port=8000, debug=True)
